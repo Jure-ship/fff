@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="container">
+        <div id="newtask">
+            <input type="text" id="zaobrisat" placeholder="To do:">
+            <input type="date" id="time" name="date">   
+            <button id="push" >Dodaj</button> 
+                
+        </div>
+
+        <div id="tasks">
+            
+        </div>
+    </div>
+    
+
+
+    <script src="script.js"></script>  
+
+
+
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBadx9EmMuhsmFf4QggjrQ7K_i3Q6QUyqA",
+    authDomain: "projecttodo-330a7.firebaseapp.com",
+    projectId: "projecttodo-330a7",
+    storageBucket: "projecttodo-330a7.appspot.com",
+    messagingSenderId: "241320694956",
+    appId: "1:241320694956:web:3049ae0681dc60a0763b09"
+  };
+
+
+
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  import{getDatabase,ref,set,child,update,remove,push} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+  const db=getDatabase();
+
+  window.onload=function(){
+    
+
+    document.getElementById("push").onclick=function() {
+
+      push(ref(db,"Zadatci"),{
+      task:document.getElementById("zaobrisat").value,
+      date:document.querySelector("#time").value
+    });
+    }
+    function writeUserData() {
+  set(ref(db, "Zadatci"), {
+      task:document.getElementById("zaobrisat").value,
+      date:document.querySelector("#time").value
+  });
+}
+
+  }
+
+
+
+
+        
+      </script>
+</body>
+</html>
